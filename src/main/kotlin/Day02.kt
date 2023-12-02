@@ -6,8 +6,8 @@ fun main() {
 
 class Day02 {
     fun part1(input: List<String>): Int {
-        val games = input.map { Game.parse(it) }
-        return games.filter { game -> game.isPossible(12, 13, 14) }
+        return input.map { Game.parse(it) }
+            .filter { game -> game.isPossible(12, 13, 14) }
             .sumOf { game -> game.id }
     }
 
@@ -21,8 +21,8 @@ data class Game(val id: Int, val grabs: List<Grab>) {
 
     companion object {
         fun parse(value: String): Game {
-            val id = value.split(':').first().replaceFirst("Game ", "").toInt()
-            val grabs = value.split(':').last()
+            val id = value.substringAfter("Game ").substringBefore(":").toInt()
+            val grabs = value.substringAfter(':')
                 .split(';')
                 .map { Grab.parse(it.trim()) }
             return Game(id, grabs);
@@ -53,9 +53,8 @@ data class Grab(val red: Int = 0, val green: Int = 0, val blue: Int = 0) {
     companion object {
         fun parse(value: String): Grab {
             val colors = value.split(',').map { colorWithCount ->
-                val count = colorWithCount.trim().split(" ").first().toInt()
-                val color = colorWithCount.trim().split(" ").last()
-                Pair(color, count)
+                val (count, color) = colorWithCount.trim().split(" ").let { it[0].toInt() to it[1] }
+                color to count
             }
             val red = colors.find { colorCount -> colorCount.first == "red" }?.second ?: 0
             val green = colors.find { colorCount -> colorCount.first == "green" }?.second ?: 0
