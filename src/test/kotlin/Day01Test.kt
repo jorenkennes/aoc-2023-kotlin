@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test
 class Day01Test {
 
     @Test
+    fun `Part 1 puzzle input`() {
+        val input = readInput("Day01")
+        assertThat(Day01().part1(input)).isEqualTo(55017);
+    }
+
+    @Test
+    fun `Part 2 puzzle input`() {
+        val input = readInput("Day01")
+        assertThat(Day01().part2(input)).isEqualTo(53539);
+    }
+
+    @Test
     fun `Part1 test example`() {
         assertThat(Day01().part1(listOf("1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"))).isEqualTo(142);
     }
@@ -60,42 +72,6 @@ class Day01Test {
         @Test
         fun `When only no other characters`() {
             assertThat(Day01().combineFirstAndLastDigit("92374")).isEqualTo(94)
-        }
-    }
-
-    @Nested
-    @DisplayName("Combine first and last digit when digit can be spelled out into 2-digit number")
-    inner class CombineFirstAndLastDigitWhenStringsCouldRepresentDigit {
-
-        @Test
-        fun `When one real digit and one spelled out before and after that digit `() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("two1nine")).isEqualTo(29);
-        }
-
-        @Test
-        fun `When no real digits`() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("eightwothree")).isEqualTo(83);
-        }
-
-        @Test
-        fun `When spelledOut digit combined with other letters`() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("abcone2threexyz")).isEqualTo(13);
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("xtwone3four")).isEqualTo(24);
-        }
-
-        @Test
-        fun `When spelled out digits but first and last are regular digits`() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("4nineeightseven2")).isEqualTo(42);
-        }
-
-        @Test
-        fun `When first digit is spelled out en last one is regular digit`() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("zoneight234")).isEqualTo(14);
-        }
-
-        @Test
-        fun `When first digit is regular and last one is spelled out`() {
-            assertThat(Day01().combineFirstAndLastDigitWhenStringsCouldRepresentDigit("7pqrstsixteen")).isEqualTo(76);
         }
     }
 }
