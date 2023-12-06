@@ -12,7 +12,7 @@ class Day04 {
         return input
             .map { Scratchcard.parse(it) }
             .filter { it.countWinningNumbers() > 0 }
-            .sumOf { 2.0.pow((it.countWinningNumbers() - 1).toDouble()) }
+            .sumOf { 2.0.pow((it.countWinningNumbers() - 1)) }
             .toInt()
     }
 
