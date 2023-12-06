@@ -1,9 +1,12 @@
 import kotlin.math.pow
+import kotlin.time.measureTimedValue
 
 fun main() {
     val input = readInput("Day04")
-    println(Day04().part1(input))
-    println(Day04().part2(input))
+    val part1 = measureTimedValue { Day04().part1(input) }
+    val part2 = measureTimedValue { (Day04().part2(input)) }
+    println("part1: ${part1.value} (${part1.duration})")
+    println("part2: ${part2.value} (${part2.duration})")
 }
 
 class Day04 {
