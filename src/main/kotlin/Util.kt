@@ -12,3 +12,10 @@ fun <T> List<T>.multiplyOf(selector: (T) -> Int): Int {
     }
     return multiplication
 }
+
+fun <T> List<T>.prepend(e: T): List<T> {
+    return buildList(this.size + 1) {
+        add(e)
+        addAll(this@prepend)
+    }
+}
